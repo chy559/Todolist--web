@@ -1,7 +1,6 @@
 package com.example.todolist.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,8 +13,7 @@ import java.util.List;
 /**
  * 用户实体类
  */
-@Setter
-@Getter
+@Data
 @Entity
 @Table(name = "users")
 public class User {// id,username,password,email,createTime,updateTime,
