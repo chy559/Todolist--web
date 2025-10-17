@@ -1,5 +1,8 @@
 package com.example.todolist.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -8,10 +11,13 @@ import java.time.LocalDateTime;
 /**
  * 待办事项实体类
  */
+@Setter
+@Getter
 @Entity
 @Table(name = "todo_items")
 public class TodoItem {
-    
+
+    // Getter和Setter方法
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +27,7 @@ public class TodoItem {
     @Column(nullable = false, length = 200)
     private String title;
     
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")// 超长文本
     private String description;
     
     @Column(nullable = false)
@@ -45,7 +51,7 @@ public class TodoItem {
     private Priority priority = Priority.MEDIUM;
     
     // 多对一关系：多个待办事项属于一个用户
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)// 延迟加载（懒加载)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     
@@ -84,88 +90,7 @@ public class TodoItem {
         this.description = description;
         this.user = user;
     }
-    
-    // Getter和Setter方法
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public String getTitle() {
-        return title;
-    }
-    
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    public String getDescription() {
-        return description;
-    }
-    
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public Boolean getCompleted() {
-        return completed;
-    }
-    
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
-    }
-    
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-    
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-    
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-    
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-    
-    public LocalDateTime getDueDate() {
-        return dueDate;
-    }
-    
-    public void setDueDate(LocalDateTime dueDate) {
-        this.dueDate = dueDate;
-    }
-    
-    public LocalDateTime getCompletedTime() {
-        return completedTime;
-    }
-    
-    public void setCompletedTime(LocalDateTime completedTime) {
-        this.completedTime = completedTime;
-    }
-    
-    public Priority getPriority() {
-        return priority;
-    }
-    
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-    
-    public User getUser() {
-        return user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
+
     @Override
     public String toString() {
         return "TodoItem{" +

@@ -1,5 +1,8 @@
 package com.example.todolist.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,10 +14,13 @@ import java.time.temporal.ChronoUnit;
 /**
  * 纪念日实体类
  */
+@Setter
+@Getter
 @Entity
 @Table(name = "anniversaries")
 public class Anniversary {
-    
+
+    // Getter和Setter方法
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -116,88 +122,7 @@ public class Anniversary {
         }
         return targetDate.equals(today);
     }
-    
-    // Getter和Setter方法
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public String getTitle() {
-        return title;
-    }
-    
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    public String getDescription() {
-        return description;
-    }
-    
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public LocalDate getTargetDate() {
-        return targetDate;
-    }
-    
-    public void setTargetDate(LocalDate targetDate) {
-        this.targetDate = targetDate;
-    }
-    
-    public Boolean getIsRecurring() {
-        return isRecurring;
-    }
-    
-    public void setIsRecurring(Boolean isRecurring) {
-        this.isRecurring = isRecurring;
-    }
-    
-    public AnniversaryType getType() {
-        return type;
-    }
-    
-    public void setType(AnniversaryType type) {
-        this.type = type;
-    }
-    
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-    
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-    
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-    
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-    
-    public Integer getRemindDaysBefore() {
-        return remindDaysBefore;
-    }
-    
-    public void setRemindDaysBefore(Integer remindDaysBefore) {
-        this.remindDaysBefore = remindDaysBefore;
-    }
-    
-    public User getUser() {
-        return user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
+
     @Override
     public String toString() {
         return "Anniversary{" +

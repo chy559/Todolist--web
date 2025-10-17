@@ -1,5 +1,8 @@
 package com.example.todolist.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -11,17 +14,21 @@ import java.util.List;
 /**
  * 用户实体类
  */
+@Setter
+@Getter
 @Entity
 @Table(name = "users")
-public class User {
-    
+public class User {// id,username,password,email,createTime,updateTime,
+
+    // Getter和Setter方法
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// 表示依赖自增的手段来生成主键
     private Long id;
-    
+
+    // 数据校验注解（用于输入验证）
     @NotBlank(message = "用户名不能为空")
     @Size(min = 3, max = 50, message = "用户名长度必须在3-50个字符之间")
-    @Column(unique = true, nullable = false, length = 50)
+    @Column(unique = true, nullable = false, length = 50)// 保持用户名的唯一性,不能为空
     private String username;
     
     @NotBlank(message = "密码不能为空")
@@ -33,7 +40,7 @@ public class User {
     @Column(unique = true, length = 100)
     private String email;
     
-    @Column(name = "create_time", nullable = false, updatable = false)
+    @Column(name = "create_time", nullable = false, updatable = false)// 表示创建时间是不可更新的
     private LocalDateTime createTime;
     
     @Column(name = "update_time")
@@ -52,12 +59,12 @@ public class User {
     private List<Anniversary> anniversaries = new ArrayList<>();
     
     @PrePersist
-    protected void onCreate() {
+    protected void onCreate() {// 创建前执行
         createTime = LocalDateTime.now();
         updateTime = LocalDateTime.now();
     }
     
-    @PreUpdate
+    @PreUpdate // 更新时执行
     protected void onUpdate() {
         updateTime = LocalDateTime.now();
     }
@@ -71,80 +78,7 @@ public class User {
         this.password = password;
         this.email = email;
     }
-    
-    // Getter和Setter方法
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public String getUsername() {
-        return username;
-    }
-    
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    
-    public String getPassword() {
-        return password;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
-    public String getEmail() {
-        return email;
-    }
-    
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-    
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-    
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-    
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-    
-    public List<TodoItem> getTodoItems() {
-        return todoItems;
-    }
-    
-    public void setTodoItems(List<TodoItem> todoItems) {
-        this.todoItems = todoItems;
-    }
-    
-    public List<FocusSession> getFocusSessions() {
-        return focusSessions;
-    }
-    
-    public void setFocusSessions(List<FocusSession> focusSessions) {
-        this.focusSessions = focusSessions;
-    }
-    
-    public List<Anniversary> getAnniversaries() {
-        return anniversaries;
-    }
-    
-    public void setAnniversaries(List<Anniversary> anniversaries) {
-        this.anniversaries = anniversaries;
-    }
-    
+
     @Override
     public String toString() {
         return "User{" +

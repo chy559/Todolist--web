@@ -1,5 +1,8 @@
 package com.example.todolist.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -8,10 +11,13 @@ import java.time.LocalDateTime;
 /**
  * 专注时间会话实体类
  */
+@Setter
+@Getter
 @Entity
 @Table(name = "focus_sessions")
 public class FocusSession {
-    
+
+    // Getter和Setter方法
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -98,88 +104,7 @@ public class FocusSession {
             this.actualDuration = (int) java.time.Duration.between(this.startTime, LocalDateTime.now()).toMinutes();
         }
     }
-    
-    // Getter和Setter方法
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer getDuration() {
-        return duration;
-    }
-    
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-    
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-    
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-    
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-    
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-    
-    public Integer getActualDuration() {
-        return actualDuration;
-    }
-    
-    public void setActualDuration(Integer actualDuration) {
-        this.actualDuration = actualDuration;
-    }
-    
-    public SessionStatus getStatus() {
-        return status;
-    }
-    
-    public void setStatus(SessionStatus status) {
-        this.status = status;
-    }
-    
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-    
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-    
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-    
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-    
-    public String getNotes() {
-        return notes;
-    }
-    
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-    
-    public User getUser() {
-        return user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
+
     @Override
     public String toString() {
         return "FocusSession{" +
