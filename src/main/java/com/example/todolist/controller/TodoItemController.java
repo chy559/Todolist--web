@@ -165,6 +165,39 @@ public class TodoItemController {
     }
     
     /**
+     * 标记待办事项为完成
+     * POST /api/todoitems/{id}/complete
+     */
+    @PostMapping("/{id}/complete")
+    public ResponseEntity<ApiResponse<TodoItemResponseDTO>> markTodoItemComplete(
+            @PathVariable Long id) {
+        TodoItemResponseDTO todoItem = todoItemService.markTodoItemComplete(id);
+        return ResponseEntity.ok(ApiResponse.success(todoItem));
+    }
+    
+    /**
+     * 标记待办事项为未完成
+     * POST /api/todoitems/{id}/incomplete
+     */
+    @PostMapping("/{id}/incomplete")
+    public ResponseEntity<ApiResponse<TodoItemResponseDTO>> markTodoItemIncomplete(
+            @PathVariable Long id) {
+        TodoItemResponseDTO todoItem = todoItemService.markTodoItemIncomplete(id);
+        return ResponseEntity.ok(ApiResponse.success(todoItem));
+    }
+    
+    /**
+     * 获取用户的待办事项统计信息
+     * GET /api/todoitems/user/{userId}/statistics
+     */
+    @GetMapping("/user/{userId}/statistics")
+    public ResponseEntity<ApiResponse<java.util.Map<String, Object>>> getTodoStatistics(
+            @PathVariable Long userId) {
+        java.util.Map<String, Object> statistics = todoItemService.getTodoStatistics(userId);
+        return ResponseEntity.ok(ApiResponse.success(statistics));
+    }
+    
+    /**
      * 删除待办事项
      * DELETE /api/todoitems/{id}
      */

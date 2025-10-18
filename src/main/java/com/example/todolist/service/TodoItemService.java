@@ -221,6 +221,67 @@ public class TodoItemService {
     }
     
     /**
+     * 标记待办事项为完成
+     */
+    public TodoItemResponseDTO markTodoItemComplete(Long id) {
+        TodoItem todoItem = todoItemRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("待办事项", "id", id));
+        
+        todoItem.setCompleted(true);
+        
+        TodoItem updatedTodoItem = todoItemRepository.save(todoItem);
+        return convertToDTO(updatedTodoItem);
+    }
+    
+    /**
+     * 标记待办事项为未完成
+     */
+    public TodoItemResponseDTO markTodoItemIncomplete(Long id) {
+        TodoItem todoItem = todoItemRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("待办事项", "id", id));
+        
+        todoItem.setCompleted(false);
+        
+        TodoItem updatedTodoItem = todoItemRepository.save(todoItem);
+        return convertToDTO(updatedTodoItem);
+    }
+    
+    /**
+     * 获取用户的待办事项统计信息
+     */
+    public java.util.Map<String, Object> getTodoStatistics(Long userId) {
+        // 验证用户是否存在
+        userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("用户", "id", userId));
+        
+        // 获取所有待办事项
+        List<TodoItem> allTodos = todoItemRepository.findByUserId(userId);
+        
+        // 统计总数
+        long totalTodos = allTodos.size();
+        
+        // 统计已完成数
+        long completedTodos = allTodos.stream()
+                .filter(TodoItem::getCompleted)
+                .count();
+        
+        // 统计已过期未完成数
+        long overdueTodos = allTodos.stream()
+                .filter(todo -> !todo.getCompleted() 
+                        && todo.getDueDate() != null 
+                        && todo.getDueDate().isBefore(LocalDateTime.now()))
+                .count();
+        
+        // 创建统计数据Map
+        java.util.Map<String, Object> statistics = new java.util.HashMap<>();
+        statistics.put("totalTodos", totalTodos);
+        statistics.put("completedTodos", completedTodos);
+        statistics.put("overdueTodos", overdueTodos);
+        
+        return statistics;
+    }
+    
+    /**
      * 删除待办事项
      */
     public void deleteTodoItem(Long id) {
