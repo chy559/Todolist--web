@@ -39,6 +39,9 @@ public class TodoItem {
     @Column(name = "update_time")
     private LocalDateTime updateTime;
     
+    @Column(name = "start_time")
+    private LocalDateTime startTime; // 开始时间
+    
     @Column(name = "due_date")
     private LocalDateTime dueDate;
     

@@ -25,7 +25,7 @@ public class UserService {
     
     private final UserRepository userRepository;
     
-    @Autowired
+    @Autowired // 创建时自动注入实例对象无需手动创建
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
