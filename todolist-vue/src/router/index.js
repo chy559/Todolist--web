@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Layout from '@/components/Layout.vue'
 
 const routes = [
   {
@@ -15,32 +16,35 @@ const routes = [
   },
   {
     path: '/',
+    component: Layout,
     redirect: '/dashboard',
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import('@/views/Dashboard.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/todos',
-    name: 'TodoList',
-    component: () => import('@/views/TodoList.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/focus',
-    name: 'Focus',
-    component: () => import('@/views/Focus.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/anniversaries',
-    name: 'Anniversary',
-    component: () => import('@/views/Anniversary.vue'),
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/Dashboard.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'todos',
+        name: 'TodoList',
+        component: () => import('@/views/TodoList.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'focus',
+        name: 'Focus',
+        component: () => import('@/views/Focus.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'anniversaries',
+        name: 'Anniversary',
+        component: () => import('@/views/Anniversary.vue'),
+        meta: { requiresAuth: true }
+      }
+    ]
   }
 ]
 
