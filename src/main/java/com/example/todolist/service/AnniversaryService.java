@@ -145,9 +145,6 @@ public class AnniversaryService {
         userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("用户", "id", userId));
         
-        LocalDate today = LocalDate.now();
-        LocalDate futureDate = today.plusDays(days);
-        
         List<Anniversary> allAnniversaries = anniversaryRepository.findByUserId(userId);
         
         return allAnniversaries.stream()
