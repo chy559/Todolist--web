@@ -371,7 +371,11 @@ onMounted(loadAllData)
 </script>
 
 <style scoped>
-.anniversary-container { max-width: 1400px; margin: 0 auto; }
+.anniversary-container { 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 0;
+}
 .countdown-row { margin-bottom: 20px; }
 .countdown-card { cursor: pointer; transition: all 0.3s; }
 .countdown-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
