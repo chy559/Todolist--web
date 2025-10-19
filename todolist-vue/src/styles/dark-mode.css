@@ -1,0 +1,326 @@
+/* 夜间模式全局样式 */
+
+/* Element Plus 组件夜间模式覆盖 */
+.dark {
+  /* 卡片 */
+  --el-bg-color: #3a3a3a;
+  --el-bg-color-page: #2b2b2b;
+  --el-bg-color-overlay: #3a3a3a;
+  --el-text-color-primary: #e5e5e5;
+  --el-text-color-regular: #c0c0c0;
+  --el-text-color-secondary: #a0a0a0;
+  --el-text-color-placeholder: #808080;
+  --el-border-color: #4a4a4a;
+  --el-border-color-light: #4a4a4a;
+  --el-border-color-lighter: #3a3a3a;
+  --el-border-color-extra-light: #3a3a3a;
+  --el-fill-color-blank: #3a3a3a;
+  --el-fill-color: #3a3a3a;
+  --el-fill-color-light: #4a4a4a;
+  --el-fill-color-lighter: #303030;
+  --el-fill-color-extra-light: #303030;
+  --el-fill-color-dark: #4a4a4a;
+  --el-fill-color-darker: #5a5a5a;
+}
+
+/* 卡片样式 */
+.dark .el-card {
+  background-color: #3a3a3a;
+  border-color: #4a4a4a;
+  color: #e5e5e5;
+}
+
+.dark .el-card__header {
+  background-color: #3a3a3a;
+  border-bottom-color: #4a4a4a;
+  color: #e5e5e5;
+}
+
+/* 表格样式 */
+.dark .el-table {
+  background-color: #3a3a3a;
+  color: #e5e5e5;
+}
+
+.dark .el-table th,
+.dark .el-table tr {
+  background-color: #3a3a3a;
+  color: #e5e5e5;
+}
+
+.dark .el-table--striped .el-table__body tr.el-table__row--striped td {
+  background-color: #353535;
+}
+
+.dark .el-table__body tr:hover > td {
+  background-color: #454545 !important;
+}
+
+.dark .el-table td,
+.dark .el-table th.is-leaf {
+  border-bottom-color: #4a4a4a;
+}
+
+.dark .el-table--border td,
+.dark .el-table--border th {
+  border-right-color: #4a4a4a;
+}
+
+/* 输入框样式 */
+.dark .el-input__wrapper {
+  background-color: #303030;
+  box-shadow: 0 0 0 1px #4a4a4a inset;
+}
+
+.dark .el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px #5a5a5a inset;
+}
+
+.dark .el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px var(--el-color-primary) inset;
+}
+
+.dark .el-input__inner {
+  color: #e5e5e5;
+}
+
+.dark .el-input__inner::placeholder {
+  color: #808080;
+}
+
+/* 选择器样式 */
+.dark .el-select__wrapper {
+  background-color: #303030;
+  box-shadow: 0 0 0 1px #4a4a4a inset;
+}
+
+.dark .el-select-dropdown {
+  background-color: #3a3a3a;
+  border-color: #4a4a4a;
+}
+
+.dark .el-select-dropdown__item {
+  color: #e5e5e5;
+}
+
+.dark .el-select-dropdown__item:hover {
+  background-color: #454545;
+}
+
+.dark .el-select-dropdown__item.selected {
+  color: var(--el-color-primary);
+}
+
+/* 对话框样式 */
+.dark .el-dialog {
+  background-color: #3a3a3a;
+  border: 1px solid #4a4a4a;
+}
+
+.dark .el-dialog__header {
+  border-bottom-color: #4a4a4a;
+}
+
+.dark .el-dialog__title {
+  color: #e5e5e5;
+}
+
+.dark .el-dialog__body {
+  color: #c0c0c0;
+}
+
+.dark .el-dialog__footer {
+  border-top-color: #4a4a4a;
+}
+
+/* 标签样式 */
+.dark .el-tag {
+  border-color: #4a4a4a;
+}
+
+.dark .el-tag.el-tag--info {
+  background-color: #4a4a4a;
+  color: #c0c0c0;
+}
+
+/* 日历样式 */
+.dark .el-calendar {
+  background-color: #3a3a3a;
+}
+
+.dark .el-calendar-table {
+  background-color: #3a3a3a;
+}
+
+.dark .el-calendar-table thead th {
+  color: #e5e5e5;
+  border-bottom-color: #4a4a4a;
+}
+
+.dark .el-calendar-table td {
+  border-color: #4a4a4a;
+  color: #c0c0c0;
+}
+
+.dark .el-calendar-table td.is-today {
+  color: var(--el-color-primary);
+}
+
+.dark .el-calendar-day {
+  color: #c0c0c0;
+}
+
+/* 空状态样式 */
+.dark .el-empty {
+  color: #c0c0c0;
+}
+
+.dark .el-empty__description {
+  color: #a0a0a0;
+}
+
+/* 下拉菜单样式 */
+.dark .el-dropdown-menu {
+  background-color: #3a3a3a;
+  border-color: #4a4a4a;
+}
+
+.dark .el-dropdown-menu__item {
+  color: #e5e5e5;
+}
+
+.dark .el-dropdown-menu__item:hover {
+  background-color: #454545;
+  color: var(--el-color-primary);
+}
+
+/* 面包屑样式 */
+.dark .el-breadcrumb__inner {
+  color: #c0c0c0;
+}
+
+.dark .el-breadcrumb__inner:hover {
+  color: var(--el-color-primary);
+}
+
+/* 进度条样式 */
+.dark .el-progress__text {
+  color: #e5e5e5;
+}
+
+/* 徽章样式 */
+.dark .el-badge__content {
+  background-color: var(--el-color-danger);
+  color: #fff;
+}
+
+/* 通知样式 */
+.dark .el-notification {
+  background-color: #3a3a3a;
+  border-color: #4a4a4a;
+}
+
+.dark .el-notification__title {
+  color: #e5e5e5;
+}
+
+.dark .el-notification__content {
+  color: #c0c0c0;
+}
+
+/* 消息框样式 */
+.dark .el-message-box {
+  background-color: #3a3a3a;
+  border-color: #4a4a4a;
+}
+
+.dark .el-message-box__title {
+  color: #e5e5e5;
+}
+
+.dark .el-message-box__content {
+  color: #c0c0c0;
+}
+
+/* 统计卡片自定义样式 */
+.dark .stat-card {
+  background-color: #3a3a3a;
+  border-color: #4a4a4a;
+}
+
+.dark .stat-value {
+  color: #e5e5e5;
+}
+
+.dark .stat-label {
+  color: #c0c0c0;
+}
+
+/* 列表项样式 */
+.dark .list-item {
+  background-color: #353535;
+}
+
+.dark .list-item:hover {
+  background-color: #404040;
+}
+
+.dark .item-title {
+  color: #e5e5e5;
+}
+
+.dark .item-meta,
+.dark .item-time,
+.dark .item-notes {
+  color: #a0a0a0;
+}
+
+/* 欢迎卡片 */
+.dark .welcome-text h1 {
+  color: #e5e5e5;
+}
+
+.dark .welcome-text p {
+  color: #c0c0c0;
+}
+
+/* 倒计时卡片 */
+.dark .countdown-title {
+  color: #e5e5e5;
+}
+
+.dark .countdown-date {
+  color: #a0a0a0;
+}
+
+/* 今日纪念日 */
+.dark .today-item {
+  background-color: rgba(244, 67, 54, 0.15);
+}
+
+.dark .today-title {
+  color: #e5e5e5;
+}
+
+/* 统计列表 */
+.dark .stat-item {
+  border-bottom-color: #4a4a4a;
+}
+
+.dark .stat-label {
+  color: #c0c0c0;
+}
+
+/* 表单标签 */
+.dark .el-form-item__label {
+  color: #e5e5e5;
+}
+
+/* 日历中的自定义样式 */
+.dark .day-number {
+  color: #c0c0c0;
+}
+
+.dark .day-number.is-today {
+  color: var(--el-color-primary);
+}

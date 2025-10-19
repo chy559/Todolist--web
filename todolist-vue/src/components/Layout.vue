@@ -53,10 +53,6 @@
           </div>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item command="profile">
-                <el-icon><User /></el-icon>
-                个人资料
-              </el-dropdown-item>
               <el-dropdown-item command="settings">
                 <el-icon><Setting /></el-icon>
                 设置
@@ -103,6 +99,33 @@
         </router-view>
       </el-main>
     </el-container>
+
+    <!-- 设置对话框 -->
+    <el-dialog
+      v-model="settingsDialogVisible"
+      title="设置"
+      width="500px"
+    >
+      <div class="settings-content">
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">
+              <el-icon><Moon /></el-icon>
+              夜间模式
+            </div>
+            <div class="setting-desc">切换深色主题，保护您的眼睛</div>
+          </div>
+          <el-switch
+            v-model="isDarkMode"
+            :active-icon="Moon"
+            :inactive-icon="Sunny"
+          />
+        </div>
+      </div>
+      <template #footer>
+        <el-button @click="settingsDialogVisible = false">关闭</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -117,12 +140,13 @@ import {
   Timer,
   Calendar,
   UserFilled,
-  User,
   Setting,
   SwitchButton,
   Fold,
   Expand,
-  Bell
+  Bell,
+  Moon,
+  Sunny
 } from '@element-plus/icons-vue'
 import { ElMessageBox } from 'element-plus'
 
@@ -138,6 +162,12 @@ const currentUser = computed(() => authStore.currentUser)
 
 // 通知数量（示例）
 const notificationCount = ref(3)
+
+// 夜间模式状态
+const isDarkMode = ref(false)
+
+// 设置对话框
+const settingsDialogVisible = ref(false)
 
 // 当前激活的菜单
 const activeMenu = computed(() => route.path)
@@ -161,19 +191,42 @@ const toggleCollapse = () => {
 // 处理下拉菜单命令
 const handleCommand = (command) => {
   switch (command) {
-    case 'profile':
-      // 跳转个人资料页（待实现）
-      console.log('个人资料')
-      break
     case 'settings':
-      // 跳转设置页（待实现）
-      console.log('设置')
+      openSettings()
       break
     case 'logout':
       handleLogout()
       break
   }
 }
+
+// 打开设置对话框
+const openSettings = () => {
+  settingsDialogVisible.value = true
+}
+
+// 初始化夜间模式
+const initDarkMode = () => {
+  const savedMode = localStorage.getItem('darkMode')
+  if (savedMode === 'true') {
+    isDarkMode.value = true
+    document.documentElement.classList.add('dark')
+  }
+}
+
+// 监听夜间模式变化
+watch(isDarkMode, (newValue) => {
+  if (newValue) {
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('darkMode', 'true')
+  } else {
+    document.documentElement.classList.remove('dark')
+    localStorage.setItem('darkMode', 'false')
+  }
+})
+
+// 页面加载时初始化
+initDarkMode()
 
 // 退出登录
 const handleLogout = () => {
@@ -363,5 +416,75 @@ const handleLogout = () => {
 
 .content::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 设置对话框样式 */
+.settings-content {
+  padding: 20px 0;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #EBEEF5;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-info {
+  flex: 1;
+}
+
+.setting-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #303133;
+  margin-bottom: 4px;
+}
+
+.setting-desc {
+  font-size: 13px;
+  color: #909399;
+}
+
+/* 夜间模式样式 */
+:global(.dark) {
+  color-scheme: dark;
+}
+
+:global(.dark) .layout-container {
+  background-color: #2b2b2b;
+}
+
+:global(.dark) .sidebar {
+  background-color: #303030;
+}
+
+:global(.dark) .header {
+  background-color: #3a3a3a;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+:global(.dark) .content {
+  background-color: #2b2b2b;
+}
+
+:global(.dark) .setting-title {
+  color: #e5e5e5;
+}
+
+:global(.dark) .setting-desc {
+  color: #c0c0c0;
+}
+
+:global(.dark) .setting-item {
+  border-bottom-color: #4a4a4a;
 }
 </style>
